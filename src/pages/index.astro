@@ -1,11 +1,272 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Base from "../layouts/Base.astro";
+import { Image } from "astro:assets";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import hero from "../assets/images/hero.jpg";
+import office from "../assets/images/office.jpg";
+import profile from "../assets/images/profile.png";
+
+import feature1 from "../assets/images/feature1.jpg";
+import feature2 from "../assets/images/feature2.jpg";
+import feature3 from "../assets/images/feature3.jpg";
+
+const PAGE = {
+  title: "Berea Real Estate — Sell or Tour with Bill Adams | CENTURY 21 Pinnacle",
+  description:
+    "Sell your home or book a tour with Bill Adams, Co-Owner of CENTURY 21 Pinnacle in Berea, KY.",
+};
+
+const featured = [
+  {
+    img: feature1,
+    addr: "6 Chestnut View, Berea, KY 40403",
+    blurb: "Updated bungalow near campus with big front porch.",
+  },
+  {
+    img: feature2,
+    addr: "104 Summit Ridge Dr, Richmond, KY 40475",
+    blurb: "New-construction brick ranch on 1.2 acres with views.",
+  },
+  {
+    img: feature3,
+    addr: "2024 Wildflower Way, Richmond, KY 40475",
+    blurb: "Custom home with craftsman details in a quiet cul-de-sac.",
+  },
+];
 ---
+<Base title={PAGE.title} description={PAGE.description}>
 
-<Layout>
-	<Welcome />
-</Layout>
+  <!-- HERO -->
+  <section class="relative isolate">
+    <div class="absolute inset-0 -z-10">
+      <Image
+        src={hero}
+        alt="Bluegrass hills"
+        sizes="100vw"
+        loading="eager"
+        decoding="sync"
+        quality={70}
+        class="h-full w-full object-cover"
+      />
+      <div class="absolute inset-0 bg-black/60 md:bg-black/50"></div>
+      <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent"></div>
+    </div>
+
+    <div class="wrap px-4">
+      <div class="py-16 md:py-24 grid gap-10 md:grid-cols-2 md:items-center">
+        <!-- MOBILE profile -->
+        <div class="md:hidden flex justify-center">
+          <div class="rounded-2xl shadow-xl ring-1 ring-[#2a2a2a] bg-[#BEAF87]">
+            <Image
+              src={profile}
+              alt="Bill Adams"
+              sizes="68vw"
+              quality={85}
+              class="w-[68vw] h-auto rounded-xl bg-[#BEAF87]"
+            />
+          </div>
+        </div>
+
+        <!-- LEFT: hero copy + CTAs -->
+        <div class="text-center md:text-left">
+          <h1 class="text-white text-4xl md:text-5xl font-extrabold leading-tight">
+            Ready to make your next move in Berea?
+          </h1>
+          <p class="mt-3 text-base md:text-lg text-[#BEAF87]">
+            Bill Adams · Co-Owner · CENTURY 21 Pinnacle · 20+ Years
+          </p>
+
+          <div class="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+            <a href="/sell" data-astro-prefetch
+               class="inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold bg-[#BEAF87] text-black hover:opacity-90">
+              Sell Your Home
+            </a>
+            <a href="/tour" data-astro-prefetch
+               class="inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold bg-[#BEAF87] text-black hover:opacity-90">
+              Book Your Tour
+            </a>
+          </div>
+
+          <p class="mt-4 text-sm text-white/85">
+            Want to browse first? Use
+            <a class="underline decoration-[#BEAF87] underline-offset-4 hover:text-[#BEAF87]" href="/property-search">
+              Property Search
+            </a>
+            in the nav.
+          </p>
+        </div>
+
+        <!-- RIGHT: profile (desktop only) -->
+        <div class="hidden md:flex justify-end">
+          <div class="rounded-2xl shadow-xl shadow-black/40 ring-1 ring-[#2a2a2a] bg-[#BEAF87]">
+            <Image
+              src={profile}
+              alt="Bill Adams"
+              sizes="(min-width: 1024px) 380px, 46vw"
+              quality={85}
+              class="w-[380px] max-w-[46vw] h-auto rounded-xl bg-[#BEAF87]"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- trust strip -->
+    <div class="bg-[#121212] border-y border-[#252526]">
+      <div class="wrap grid grid-cols-2 md:grid-cols-4 gap-3 py-3 text-center text-sm text-white/85">
+        <p>Co-Owner, CENTURY 21 Pinnacle</p>
+        <p>20+ Years Local Experience</p>
+        <p>Top Producer</p>
+        <p>Outstanding Service (5.0)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section bg-[#1a1a1a]">
+    <div class="wrap grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-3xl font-semibold text-[#BEAF87] mb-3">Meet Bill Adams</h2>
+        <p class="mb-3">
+          A lifelong Kentuckian and Co-Owner at CENTURY 21 Pinnacle, Bill helps Berea and Madison County families sell quickly and buy confidently.
+        </p>
+        <p class="mb-3">
+          Expect proactive communication, smart pricing, and smooth negotiations from start to finish.
+        </p>
+        <p class="text-sm text-white/70">
+          Lic. #210188 · Cell: (859) 302-7878 · bill@c21thepinnacle.com
+        </p>
+      </div>
+
+      <Image
+        src={office}
+        alt="CENTURY 21 Pinnacle office, Berea"
+        sizes="(min-width: 1024px) 560px, 92vw"
+        loading="lazy"
+        quality={72}
+        class="w-full h-auto rounded-xl shadow-xl shadow-black/30 ring-1 ring-white/5"
+      />
+    </div>
+  </section>
+
+  <!-- FEATURED PROPERTIES -->
+  <section class="section bg-[#121212]">
+    <div class="wrap">
+      <div class="flex items-end justify-between gap-4 mb-6">
+        <h3 class="text-2xl md:text-3xl font-semibold text-[#BEAF87]">Featured Properties</h3>
+        <a href="/property-search" class="text-sm underline decoration-[#BEAF87] underline-offset-4 hover:text-[#BEAF87]">
+          See all listings →
+        </a>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {featured.map((f) => (
+          <article class="group overflow-hidden rounded-xl ring-1 ring-white/10 bg-[#1b1b1b]">
+            <div class="relative">
+              <Image
+                src={f.img}
+                alt={f.addr}
+                sizes="(min-width: 1024px) 380px, 92vw"
+                loading="lazy"
+                quality={80}
+                class="w-full h-56 md:h-48 object-cover"
+              />
+            </div>
+            <div class="p-4 grid gap-2">
+              <h4 class="font-semibold">{f.addr}</h4>
+              <p class="text-sm text-white/75">{f.blurb}</p>
+              <div class="mt-2">
+                <a href="/tour"
+                   class="inline-flex items-center justify-center px-4 py-2 rounded-md font-semibold bg-[#BEAF87] text-black hover:opacity-90">
+                  Book a Tour
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SELL CTA -->
+  <section class="section bg-[#121212]">
+    <div class="wrap grid md:grid-cols-2 gap-10 items-start">
+      <div>
+        <h3 class="text-2xl font-semibold mb-2 text-[#BEAF87]">Thinking of selling?</h3>
+        <p class="text-white/90">Get a free, no-obligation valuation and a simple plan to list with confidence.</p>
+        <ul class="mt-4 list-disc pl-6 text-white/90 space-y-1.5">
+          <li>Pricing strategy tailored to your neighborhood</li>
+          <li>Pro photography and syndication</li>
+          <li>Negotiation and contract expertise</li>
+        </ul>
+      </div>
+
+      <form class="bg-[#1b1b1b] p-5 rounded-lg grid gap-3 ring-1 ring-white/10"
+            action="/api/lead" method="post">
+        <input
+          name="name" placeholder="Full name" required
+          class="bg-[#121212] text-white placeholder:text-white/55 border border-[#2e2e2e] focus:border-[#BEAF87] focus:outline-none rounded px-3 py-3"
+        />
+        <input
+          name="email" type="email" placeholder="Email" required
+          class="bg-[#121212] text-white placeholder:text-white/55 border border-[#2e2e2e] focus:border-[#BEAF87] focus:outline-none rounded px-3 py-3"
+        />
+        <input
+          name="phone" placeholder="Phone" required
+          class="bg-[#121212] text-white placeholder:text-white/55 border border-[#2e2e2e] focus:border-[#BEAF87] focus:outline-none rounded px-3 py-3"
+        />
+        <input
+          name="address" placeholder="Property address (optional)"
+          class="bg-[#121212] text-white placeholder:text-white/55 border border-[#2e2e2e] focus:border-[#BEAF87] focus:outline-none rounded px-3 py-3"
+        />
+        <input type="hidden" name="intent" value="seller-valuation" />
+        <button class="w-full py-3 rounded-md font-semibold bg-[#BEAF87] text-black" type="submit">
+          Get My Home Valuation
+        </button>
+        <p class="text-xs text-white/60">By submitting, you agree to be contacted about your request.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- TOUR CTA -->
+  <section class="section bg-[#121212] pt-0 md:pt-10">
+    <div class="wrap grid md:grid-cols-2 gap-10 items-start">
+      <div>
+        <h3 class="text-2xl font-semibold mb-2 text-[#BEAF87]">Already found a home?</h3>
+        <p class="text-white/90">
+          Book a private showing with Bill. Share the address or MLS link and your best time.
+        </p>
+      </div>
+
+      <form class="bg-[#1b1b1b] p-5 rounded-lg grid gap-3 ring-1 ring-white/10"
+            action="/api/lead" method="post">
+        <input
+          name="name" placeholder="Full name" required
+          class="bg-[#121212] text-white placeholder:text-white/55 border border-[#2e2e2e] focus:border-[#BEAF87] focus:outline-none rounded px-3 py-3"
+        />
+        <input
+          name="email" type="email" placeholder="Email" required
+          class="bg-[#121212] text-white placeholder:text-white/55 border border-[#2e2e2e] focus:border-[#BEAF87] focus:outline-none rounded px-3 py-3"
+        />
+        <input
+          name="phone" placeholder="Phone" required
+          class="bg-[#121212] text-white placeholder:text-white/55 border border-[#2e2e2e] focus:border-[#BEAF87] focus:outline-none rounded px-3 py-3"
+        />
+        <input
+          name="property" placeholder="Property address or MLS link" required
+          class="bg-[#121212] text-white placeholder:text-white/55 border border-[#2e2e2e] focus:border-[#BEAF87] focus:outline-none rounded px-3 py-3"
+        />
+        <input type="hidden" name="intent" value="tour-request" />
+        <button class="w-full py-3 rounded-md font-semibold bg-[#BEAF87] text-black" type="submit">
+          Book My Tour
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <style is:global>
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</Base>

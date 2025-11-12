@@ -1,0 +1,30 @@
+<!-- /src/components/StickyContact.astro -->
+<div class="md:hidden fixed bottom-0 inset-x-0 z-[60]">
+  <div
+    class="bg-black/90 backdrop-blur border-t border-[#2a2a2a] shadow-[0_-6px_18px_rgba(0,0,0,0.6)]"
+    style="padding-bottom: env(safe-area-inset-bottom);"
+  >
+    <div class="wrap">
+      <div class="grid grid-cols-3 gap-2 py-2">
+        <a
+          href="tel:+18593027878"
+          class="flex items-center justify-center h-12 rounded-md font-semibold text-sm bg-[#BEAF87] text-black hover:bg-[#d2c49b] active:opacity-90 transition-colors"
+        >
+          Call
+        </a>
+        <a
+          href="sms:+18593027878"
+          class="flex items-center justify-center h-12 rounded-md font-semibold text-sm bg-[#BEAF87] text-black hover:bg-[#d2c49b] active:opacity-90 transition-colors"
+        >
+          Text
+        </a>
+        <a
+          href="mailto:bill@c21thepinnacle.com"
+          class="flex items-center justify-center h-12 rounded-md font-semibold text-sm bg-[#BEAF87] text-black hover:bg-[#d2c49b] active:opacity-90 transition-colors"
+        >
+          Email
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
